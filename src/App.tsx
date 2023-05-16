@@ -1,11 +1,10 @@
-import "./App.css";
+import "./sass/App.scss";
+import Header from "./components/ui/Header";
 
-function App() {
+export default function App() {
   return (
     <>
-      <h1>js-frameworks-ca</h1>
+      <Header></Header>
     </>
   );
 }
-
-export default App;
