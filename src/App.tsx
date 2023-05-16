@@ -2,24 +2,22 @@ import "./sass/App.scss";
 
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/ui/Layout";
-import Home from "./pages/Home";
-import Product from "./pages/Product";
-import Contact from "./pages/Contact";
-import Cart from "./pages/Cart";
-import NotFound from "./pages/NotFound";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+import ContactPage from "./pages/ContactPage";
+import CartPage from "./pages/CartPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />}></Route>
-          <Route path="product/:id" element={<Product />}></Route>
-          <Route path="cart" element={<Cart />}></Route>
-          <Route path="contact" element={<Contact />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />}></Route>
+        <Route path="product/:id" element={<ProductPage />}></Route>
+        <Route path="cart" element={<CartPage />}></Route>
+        <Route path="contact" element={<ContactPage />}></Route>
+        <Route path="*" element={<NotFoundPage />}></Route>
+      </Route>
+    </Routes>
   );
 }

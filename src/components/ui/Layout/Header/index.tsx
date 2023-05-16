@@ -5,6 +5,7 @@ import {
   faPhone,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -14,13 +15,19 @@ export default function Header() {
         <nav>
           <ul>
             <li>
-              <FontAwesomeIcon icon={faHouse} />
+              <NavLink to={"/"}>
+                <FontAwesomeIcon icon={faHouse} />
+              </NavLink>
             </li>
             <li>
-              <FontAwesomeIcon icon={faPhone} />
+              <NavLink to={"/contact"}>
+                <FontAwesomeIcon icon={faPhone} />
+              </NavLink>
             </li>
             <li>
-              <FontAwesomeIcon icon={faShoppingCart} />
+              <NavLink to={"/cart"}>
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </NavLink>
             </li>
           </ul>
         </nav>
@@ -66,6 +73,39 @@ const HeaderStyled = styled.header`
       width: 30px;
       aspect-ratio: 1;
       font-size: 2rem;
+      color: white !important;
+
+      & a {
+        color: white;
+        transition-property: filter, margin;
+        transition-duration: 100ms;
+        transition-timing-function: ease-in-out;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          width: 0%;
+          height: 4px;
+          border-radius: 10vw;
+          background-color: currentColor;
+          transition: width 100ms ease-in-out;
+        }
+
+        &:hover:not(.active),
+        &:focus:not(.active) {
+          filter: drop-shadow(3px 1px 1px rgb(0, 0, 0, 0.3));
+        }
+
+        &.active {
+          cursor: auto;
+          &::before {
+            transition: width 200ms ease-in-out;
+            width: 100%;
+          }
+        }
+      }
     }
   }
 `;
