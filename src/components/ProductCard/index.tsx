@@ -2,8 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { IProduct } from "../ProductList";
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({
+  id,
   title,
   price,
   discountedPrice,
@@ -13,7 +15,7 @@ export default function ProductCard({
   const discount = (price - discountedPrice) / price;
 
   return (
-    <Card className="card">
+    <Card className="card" to={`/product/${id}`}>
       <div className="card-img">
         <img src={imageUrl} alt={"image of " + title} />
       </div>
@@ -44,7 +46,7 @@ export default function ProductCard({
   );
 }
 
-const Card = styled.div`
+const Card = styled(Link)`
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 1fr minmax(50px, auto);

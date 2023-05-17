@@ -6,13 +6,7 @@ export default function ProductList({ products }: IAllProducts) {
   return (
     <ProductListStyles>
       {products.map((prod: IProduct) => (
-        <Link
-          to={`/product
-				/${prod.id}`}
-          key={prod.id}
-        >
-          <ProductCard {...prod}></ProductCard>
-        </Link>
+        <ProductCard {...prod} key={prod.id}></ProductCard>
       ))}
     </ProductListStyles>
   );
