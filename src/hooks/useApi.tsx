@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { IProduct } from "../components/ProductList";
 
 const useApi = (url: string, options?: FetchOptions) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<unknown>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 

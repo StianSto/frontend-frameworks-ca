@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import ProductCard from "../ProductCard";
 import { styled } from "styled-components";
 
@@ -30,8 +29,18 @@ interface IAllProducts {
 export interface IProduct {
   id: string;
   title: string;
+  description: string;
   price: number;
   discountedPrice: number;
   imageUrl: string;
   rating: number;
+  tags: string[];
+  reviews: IReview[];
+}
+
+export interface IReview {
+  id: string;
+  username: string;
+  rating: number;
+  description: string;
 }

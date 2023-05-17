@@ -39,7 +39,6 @@ export default function Header() {
 const HeaderStyled = styled.header`
   background: var(--bg-primary);
   color: white;
-  width: 100vw;
   padding-block: 1.5rem;
   font-size: 1.5rem;
   font-weight: bold;
