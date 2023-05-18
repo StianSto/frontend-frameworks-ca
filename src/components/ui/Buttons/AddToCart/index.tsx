@@ -1,10 +1,29 @@
 import { ReactElement } from "react";
 import { styled } from "styled-components";
+import { useCartStore } from "../../../../store";
+import { shallow } from "zustand/shallow";
+import { IProduct } from "../../../ProductList";
 
-export default function AddToCart({ id }: { id: string }): ReactElement {
-  console.log(id);
+export default function AddToCart({
+  product,
+}: {
+  product: IProduct;
+}): ReactElement {
+  const { cart, addToCart } = useCartStore(
+    (state) => ({
+      cart: state.cart,
+      addToCart: state.addToCart,
+    }),
+    shallow
+  );
 
-  return <AddToCartButtonStyles>Add To Cart</AddToCartButtonStyles>;
+  console.log(cart);
+
+  return (
+    <AddToCartButtonStyles onClick={() => addToCart(product)}>
+      Add To Cart
+    </AddToCartButtonStyles>
+  );
 }
 
 const AddToCartButtonStyles = styled.button`
