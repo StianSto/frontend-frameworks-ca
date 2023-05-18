@@ -11,6 +11,7 @@ export default function ProductPage() {
   const { id } = useParams();
 
   const { data, isLoading, isError } = useApi(API_URL + "/" + id);
+
   const {
     title,
     discountedPrice,
@@ -34,7 +35,7 @@ export default function ProductPage() {
               <ProductReviews reviews={reviews} rating={rating} />
               <p id="productdescription">{description}</p>
               <ProductPrice discountedPrice={discountedPrice} price={price} />
-              <AddToCart id={id as string} />
+              <AddToCart product={data as IProduct} />
             </div>
           </>
         )}

@@ -3,11 +3,11 @@ import { styled } from "styled-components";
 
 export default function ProductList({ products }: { products: IProduct[] }) {
   return (
-      <ProductListStyles>
-        {products.map((prod: IProduct) => (
-          <ProductCard {...prod} key={prod.id}></ProductCard>
-        ))}
-      </ProductListStyles>
+    <ProductListStyles>
+      {products.map((prod: IProduct) => (
+        <ProductCard {...prod} key={prod.id}></ProductCard>
+      ))}
+    </ProductListStyles>
   );
 }
 

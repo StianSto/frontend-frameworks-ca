@@ -2,12 +2,12 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { styled } from "styled-components";
-import useSearchStore from "../../store";
+import { useSearchStore } from "../../store";
 import { shallow } from "zustand/shallow";
 
 export default function Searchbar() {
   const { query, setQuery } = useSearchStore(
-    (state: any) => ({
+    (state) => ({
       query: state.query,
       setQuery: state.setQuery,
     }),

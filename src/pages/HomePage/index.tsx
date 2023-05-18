@@ -2,15 +2,15 @@ import useApi from "../../hooks/useApi";
 import { API_URL } from "../../constants";
 import ProductList, { IProduct } from "../../components/ProductList";
 import Searchbar from "../../components/Searchbar";
-import useSearchStore from "../../store";
+import { useSearchStore } from "../../store";
 import { shallow } from "zustand/shallow";
 
 export default function HomePage() {
-  const { data, isLoading, isError } = useApi(API_URL);
+  const { data } = useApi(API_URL);
   let products;
 
   const { query } = useSearchStore(
-    (state: any) => ({
+    (state) => ({
       query: state.query,
     }),
     shallow
@@ -18,9 +18,11 @@ export default function HomePage() {
 
   (function filterProducts() {
     try {
-      products = data?.filter((item) =>
-        item.title.toLowerCase().includes(query.toLowerCase())
-      );
+      if (Array.isArray(data)) {
+        products = data?.filter((item: IProduct) =>
+          item.title.toLowerCase().includes(query.toLowerCase())
+        );
+      }
     } catch (error) {
       console.log("there was an error");
     }
