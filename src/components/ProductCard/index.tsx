@@ -51,6 +51,7 @@ const Card = styled(Link)`
   display: grid;
   grid-template-rows: 1fr minmax(50px, auto);
   position: relative;
+  max-width: 500px;
 
   box-shadow: 10px 8px 0 #c1c1c1;
   color: black;

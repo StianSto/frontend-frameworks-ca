@@ -1,13 +1,13 @@
 import ProductCard from "../ProductCard";
 import { styled } from "styled-components";
 
-export default function ProductList({ products }: IAllProducts) {
+export default function ProductList({ products }: { products: IProduct[] }) {
   return (
-    <ProductListStyles>
-      {products.map((prod: IProduct) => (
-        <ProductCard {...prod} key={prod.id}></ProductCard>
-      ))}
-    </ProductListStyles>
+      <ProductListStyles>
+        {products.map((prod: IProduct) => (
+          <ProductCard {...prod} key={prod.id}></ProductCard>
+        ))}
+      </ProductListStyles>
   );
 }
 
@@ -21,10 +21,6 @@ const ProductListStyles = styled.div`
 `;
 
 // type declarations
-
-interface IAllProducts {
-  products: IProduct[];
-}
 
 export interface IProduct {
   id: string;

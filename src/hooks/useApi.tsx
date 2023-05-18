@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../components/ProductList";
 
 const useApi = (url: string, options?: FetchOptions) => {
-  const [data, setData] = useState<unknown>([]);
+  const [data, setData] = useState([] as IProduct[]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -12,8 +12,8 @@ const useApi = (url: string, options?: FetchOptions) => {
         setIsLoading(true);
         setIsError(false);
         const response = await fetch(url, options);
-        const data = await response.json();
-        setData(data);
+        const results = await response.json();
+        setData(results);
       } catch (error) {
         setIsError(true);
         setIsLoading(false);
