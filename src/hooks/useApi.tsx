@@ -6,13 +6,19 @@ const useApi = (url: string, options?: FetchOptions) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  console.log(url);
+
   useEffect(() => {
     (async () => {
       try {
+        console.log(3);
+
         setIsLoading(true);
         setIsError(false);
         const response = await fetch(url, options);
         const results = await response.json();
+        console.log(response);
+
         setData(results);
       } catch (error) {
         setIsError(true);
@@ -20,8 +26,11 @@ const useApi = (url: string, options?: FetchOptions) => {
       } finally {
         setIsLoading(false);
       }
+      console.log(23424);
     })();
   }, [url, options]);
+
+  console.log(2);
 
   return { data, isLoading, isError };
 };

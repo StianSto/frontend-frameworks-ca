@@ -1,10 +1,36 @@
+import { shallow } from "zustand/shallow";
+import { API_URL } from "../../constants";
+import useApi from "../../hooks/useApi";
+import { useSearchStore } from "../../store";
 import ProductCard from "../ProductCard";
 import { styled } from "styled-components";
 
-export default function ProductList({ products }: { products: IProduct[] }) {
+export default function ProductList() {
+  const { data } = useApi(API_URL);
+  let products;
+
+  const { query } = useSearchStore(
+    (state) => ({
+      query: state.query,
+    }),
+    shallow
+  );
+
+  (function filterProducts() {
+    try {
+      if (Array.isArray(data)) {
+        products = data?.filter((item: IProduct) =>
+          item?.title?.toLowerCase().includes(query.toLowerCase())
+        );
+      }
+    } catch (error) {
+      console.log("there was an error");
+    }
+  })();
+
   return (
     <ProductListStyles>
-      {products.map((prod: IProduct) => (
+      {products?.map((prod: IProduct) => (
         <ProductCard {...prod} key={prod.id}></ProductCard>
       ))}
     </ProductListStyles>
@@ -23,15 +49,15 @@ const ProductListStyles = styled.div`
 // type declarations
 
 export interface IProduct {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  discountedPrice: number;
-  imageUrl: string;
-  rating: number;
-  tags: string[];
-  reviews: IReview[];
+  id?: string;
+  title?: string;
+  description?: string;
+  price?: number;
+  discountedPrice?: number;
+  imageUrl?: string;
+  rating?: number;
+  tags?: string[];
+  reviews?: IReview[];
 }
 
 export interface IReview {
