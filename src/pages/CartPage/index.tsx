@@ -48,7 +48,7 @@ export default function CartPage() {
                 Total: <span>${total.toFixed(2)}</span>
               </h2>
             </div>
-            <Link to={"checkout"}>
+            <Link to={"/checkout"}>
               <CtaButton>Checkout</CtaButton>
             </Link>
           </aside>

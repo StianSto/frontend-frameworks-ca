@@ -17,6 +17,7 @@ interface SearchState {
 
 interface CartState {
   cart: ICartProduct[];
+  clearCart: () => void;
   addToCart: (product: IProduct) => void;
   removeItem: (productId: string) => void;
   addProductOnce: (productId: string) => void;
@@ -25,6 +26,7 @@ interface CartState {
 
 export const useCartStore = create<CartState>((set) => ({
   cart: [],
+  clearCart: () => set({ cart: [] }),
   addToCart: (product: IProduct) =>
     set((state) => {
       const productExistsInCart = state.cart.find(
