@@ -16,15 +16,12 @@ export default function ProductList() {
     shallow
   );
 
-  (function filterProducts() {
-    try {
-      if (Array.isArray(data)) {
-        products = data?.filter((item: IProduct) =>
-          item?.title?.toLowerCase().includes(query.toLowerCase())
-        );
-      }
-    } catch (error) {
-      console.log("there was an error");
+  // filter products based on search query
+  (() => {
+    if (Array.isArray(data)) {
+      products = data?.filter((item: IProduct) =>
+        item?.title?.toLowerCase().includes(query.toLowerCase())
+      );
     }
   })();
 
