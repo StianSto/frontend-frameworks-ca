@@ -11,6 +11,7 @@ export default function ProductPage() {
   const { id } = useParams();
 
   const { data, isLoading, isError } = useApi(API_URL + "/" + id);
+
   const {
     title,
     discountedPrice,
@@ -19,7 +20,7 @@ export default function ProductPage() {
     rating,
     description,
     reviews,
-  } = data as IProduct;
+  } = data ?? {};
 
   return (
     <>
@@ -31,10 +32,17 @@ export default function ProductPage() {
             </div>
             <div className="product-body">
               <h1 id="productTitle">{title}</h1>
-              <ProductReviews reviews={reviews} rating={rating} />
-              <p id="productdescription">{description}</p>
-              <ProductPrice discountedPrice={discountedPrice} price={price} />
-              <AddToCart id={id as string} />
+              {data && (
+                <>
+                  <ProductReviews reviews={reviews} rating={rating} />
+                  <p id="productdescription">{description}</p>
+                  <ProductPrice
+                    discountedPrice={discountedPrice}
+                    price={price}
+                  />
+                  <AddToCart product={data as IProduct} />
+                </>
+              )}
             </div>
           </>
         )}
@@ -46,7 +54,7 @@ export default function ProductPage() {
   );
 }
 
-function ProductReviews({ reviews, rating }: IProductReviews) {
+function ProductReviews({ reviews = [], rating = 0 }: IProductReviews) {
   const countReviews = reviews?.length;
 
   return (
@@ -68,7 +76,7 @@ function ProductReviews({ reviews, rating }: IProductReviews) {
   );
 }
 
-function ProductPrice({ discountedPrice, price }: IProductPrice) {
+function ProductPrice({ discountedPrice = 0, price = 0 }: IProductPrice) {
   const discount = (price - discountedPrice) / price;
 
   return (
@@ -90,13 +98,13 @@ function ProductPrice({ discountedPrice, price }: IProductPrice) {
 // TYPE INTERFACES
 
 interface IProductReviews {
-  reviews: IReview[];
-  rating: number;
+  reviews?: IReview[];
+  rating?: number;
 }
 
 interface IProductPrice {
-  discountedPrice: number;
-  price: number;
+  discountedPrice?: number;
+  price?: number;
 }
 
 // STYLED COMPONENTS
