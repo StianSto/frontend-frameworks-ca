@@ -12,7 +12,8 @@ export default function ProductCard({
   imageUrl,
   rating,
 }: IProduct) {
-  const discount = (price - discountedPrice) / price;
+  const discount =
+    price && discountedPrice ? (price - discountedPrice) / price : 0;
 
   return (
     <Card className="card" to={`/product/${id}`}>
@@ -30,7 +31,7 @@ export default function ProductCard({
 
         <p className="price-container">
           <span className="price">{discountedPrice}</span>
-          {price - discountedPrice !== 0 ? (
+          {discount !== 0 ? (
             <>
               <span className="old-price">{price}</span>
             </>

@@ -29,11 +29,11 @@ export default function Searchbar() {
         value={query}
         onChange={handleInput}
       />
-      {query && (
+      {/* {query && (
         <ul className="search-autocomplete">
           <li>example of item</li>
         </ul>
-      )}
+      )} */}
     </SearchBarStyle>
   );
 }
