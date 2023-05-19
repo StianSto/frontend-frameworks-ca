@@ -6,7 +6,7 @@ export const useSearchStore = create<SearchState>((set) => ({
   setQuery: (query: string) => set(() => ({ query })),
 }));
 
-interface ICartProduct extends IProduct {
+export interface ICartProduct extends IProduct {
   count: number;
 }
 
@@ -17,6 +17,7 @@ interface SearchState {
 
 interface CartState {
   cart: ICartProduct[];
+  clearCart: () => void;
   addToCart: (product: IProduct) => void;
   removeItem: (productId: string) => void;
   addProductOnce: (productId: string) => void;
@@ -25,6 +26,7 @@ interface CartState {
 
 export const useCartStore = create<CartState>((set) => ({
   cart: [],
+  clearCart: () => set({ cart: [] }),
   addToCart: (product: IProduct) =>
     set((state) => {
       const productExistsInCart = state.cart.find(
@@ -33,14 +35,10 @@ export const useCartStore = create<CartState>((set) => ({
 
       if (productExistsInCart) {
         const updateCart = state.cart.map((cartProduct: ICartProduct) => {
-          console.log(cartProduct);
-          console.log(product);
-
           return cartProduct.id === product.id
             ? { ...cartProduct, count: cartProduct.count + 1 }
             : cartProduct;
         });
-        console.log(updateCart);
 
         return { cart: updateCart };
       }
@@ -71,14 +69,10 @@ export const useCartStore = create<CartState>((set) => ({
       const updateCart: ICartProduct[] = state.cart.map(
         (product: ICartProduct) => {
           if (product.id !== productId) return product;
-          if (product.count > 1) {
-            // remove one increment
-            return { ...product, count: Math.max(0, product.count - 1) };
-          }
-          return product;
+          return { ...product, count: Math.max(1, product.count - 1) };
         }
       );
 
-      return { cart: updateCart.filter((product) => product.count > 0) };
+      return { cart: updateCart };
     }),
 }));

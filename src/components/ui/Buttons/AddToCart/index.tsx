@@ -9,15 +9,12 @@ export default function AddToCart({
 }: {
   product: IProduct;
 }): ReactElement {
-  const { cart, addToCart } = useCartStore(
+  const { addToCart } = useCartStore(
     (state) => ({
-      cart: state.cart,
       addToCart: state.addToCart,
     }),
     shallow
   );
-
-  console.log(cart);
 
   return (
     <AddToCartButtonStyles onClick={() => addToCart(product)}>
