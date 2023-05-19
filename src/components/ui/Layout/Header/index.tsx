@@ -6,8 +6,12 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { useCartStore } from "../../../../store";
 
 export default function Header() {
+  const { cart } = useCartStore((state) => ({
+    cart: state.cart,
+  }));
   return (
     <HeaderStyled>
       <div className="wrapper">
@@ -24,10 +28,13 @@ export default function Header() {
                 <FontAwesomeIcon icon={faPhone} />
               </NavLink>
             </li>
-            <li>
+            <li className="cart-logo">
               <NavLink to={"/cart"}>
                 <FontAwesomeIcon icon={faShoppingCart} />
               </NavLink>
+              {cart.length > 0 && (
+                <span className="cart-overlay">{cart.length}</span>
+              )}
             </li>
           </ul>
         </nav>
@@ -102,6 +109,36 @@ const HeaderStyled = styled.header`
           &::before {
             transition: width 200ms ease-in-out;
             width: 100%;
+          }
+        }
+      }
+    }
+    .cart-logo {
+      position: relative;
+
+      .cart-overlay {
+        font-size: 1rem;
+        background-color: #00c2d5;
+        width: 24px;
+        text-align: center;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        translate: 80% -30%;
+        animation: appear 400ms ease-in-out forwards;
+        scale: 0;
+
+        @keyframes appear {
+          60% {
+            scale: 1.25;
+          }
+          80% {
+            scale: 0.9;
+          }
+          100% {
+            scale: 1;
           }
         }
       }
