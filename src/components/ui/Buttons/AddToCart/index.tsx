@@ -29,6 +29,7 @@ const AddToCartButtonStyles = styled.button`
   padding: 0.5rem 2.5rem;
   font-size: 1.25rem;
   font-weight: bold;
+  color: black;
 
   border-radius: 0;
   transition: all 200ms ease-in-out;
