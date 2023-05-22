@@ -187,6 +187,7 @@ const ProductPriceStyle = styled.p`
     padding: 0.25rem 1rem;
     border-radius: 100vw;
     margin-left: 8px;
+    color: black !important;
   }
 
   & .discount,

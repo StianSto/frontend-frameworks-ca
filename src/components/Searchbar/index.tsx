@@ -91,7 +91,7 @@ const SearchBarStyle = styled.div`
 `;
 
 const SearchButtonStyle = styled.button`
-  background-color: var(--bg-primary);
+  background-color: var(--primary);
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 2rem;

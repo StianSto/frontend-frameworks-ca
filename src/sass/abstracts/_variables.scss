@@ -1,0 +1,32 @@
+:root {
+  --primary: #19a4b1;
+  --primary-accent: #00c2d5;
+  --primary-bright: #00ebff;
+
+  --secondary: #7e7e7e;
+  --secondary-accent: #dbdbdb;
+
+  --cta: #fee233;
+  --cta-accent: #ff00c4;
+
+  --success: #a6eda8;
+  --danger: #d22f27;
+
+  --bg: #f9fcfc;
+  --bg-accent: #ededed;
+  --shadow: #c1c1c1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --secondary: #7e7e7e;
+    --secondary-lighter: #dbdbdb;
+
+    --bg: #262628;
+    --shadow: #414040;
+  }
+  *:focus,
+  *:focus-visible {
+    outline-color: #ffdc2c;
+  }
+}

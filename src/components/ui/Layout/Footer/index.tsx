@@ -11,8 +11,8 @@ export default function Footer() {
 }
 
 const FooterStyled = styled.footer`
-  background-color: var(--bg-primary);
+  background-color: var(--primary);
   min-height: 40px;
   padding: 1rem;
-  margin-top: auto;
+  margin-top: 4rem;
 `;

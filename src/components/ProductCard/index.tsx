@@ -30,7 +30,7 @@ export default function ProductCard({
         </div>
 
         <p className="price-container">
-          <span className="price">{discountedPrice}</span>
+          <span className="price">${discountedPrice}</span>
           {discount !== 0 ? (
             <>
               <span className="old-price">{price}</span>
@@ -54,9 +54,14 @@ const Card = styled(Link)`
   position: relative;
   max-width: 500px;
 
-  box-shadow: 10px 8px 0 #c1c1c1;
+  box-shadow: 10px 8px 0 var(--shadow);
+  border: 2px solid #939393;
   color: black;
   transition: all 200ms ease-in-out;
+
+  @media screen and (prefers-color-scheme: dark) {
+    color: #ececec;
+  }
 
   &:hover,
   &:focus-within {
@@ -80,6 +85,7 @@ const Card = styled(Link)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: var(--bg);
 
     & .card-header {
       display: flex;
@@ -121,5 +127,6 @@ const Card = styled(Link)`
     background: #a6eda8;
     border-radius: 100vw;
     padding: 0.25rem 1rem;
+    color: black;
   }
 `;

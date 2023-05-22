@@ -34,6 +34,7 @@ const CheckoutStyle = styled.div`
 
   .card {
     background-color: white;
+    color: black;
     padding: 3rem 4rem;
     margin-inline: 2rem;
     font-weight: bold;
@@ -44,7 +45,7 @@ const CheckoutStyle = styled.div`
     }
 
     & *:not(h1) {
-      color: var(--bg-primary);
+      color: var(--primary);
     }
     & .larger {
       font-size: larger;

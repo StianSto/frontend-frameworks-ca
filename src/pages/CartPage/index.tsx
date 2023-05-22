@@ -157,7 +157,7 @@ const CartItemStyle = styled.li`
     gap: 2px;
     align-items: center;
     & button {
-      background: white;
+      background: var(--bg);
       font-size: 1rem;
       padding: 2px 8px;
     }
