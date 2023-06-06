@@ -50,6 +50,19 @@ export default function ProductPage() {
         {isLoading && "Loading Item"}
         {isError && "sorry there was an error trying to retrieve the item"}
       </Product>
+      <ReviewsSection>
+        {reviews?.map(({ username, id, rating, description }) => (
+          <div key={id}>
+            <h3>{username}</h3>
+
+            <p className="rating">
+              <FontAwesomeIcon icon={faStar} />
+              {rating}
+            </p>
+            <p className="description">{description}</p>
+          </div>
+        ))}
+      </ReviewsSection>
     </>
   );
 }
@@ -200,5 +213,23 @@ const ProductPriceStyle = styled.p`
   & .price-old {
     text-decoration: line-through;
     opacity: 0.6;
+  }
+`;
+
+const ReviewsSection = styled.section`
+  max-width: 1000px;
+  margin-inline: auto;
+  margin-block: 3rem;
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+
+    &.description {
+      margin-block: 1rem;
+    }
   }
 `;
